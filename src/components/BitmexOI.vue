@@ -9,6 +9,9 @@ export default {
       const last = this.message.slice(-1);
       return last
     },
+    lastOI: function(){
+      return this.openinterest.slice(-1)
+    }
   },
   data : function (){
       return {
@@ -47,7 +50,10 @@ export default {
           type: 'realtime',
           realtime: {
             onRefresh: function(chart) {
-              x: chart.data.datasets[0].data = self.openinterest
+              chart.data.datasets[0].data.push({
+                x:Date.now(),
+                y: self.lastOI,
+              })
             },
             delay: 0.5,
             duration: 5000
