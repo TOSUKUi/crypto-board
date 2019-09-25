@@ -1,7 +1,6 @@
 <template>
   <div class="layout">
     <BitmexOI v-bind:o-i="openInterest"></BitmexOI>
-    {{orderBook}}
   </div>
 </template>
 
@@ -24,7 +23,7 @@ export default {
       ws.send(
         JSON.stringify({
           op: "subscribe",
-          args: ["instrument:XBTUSD", "orderBookL2_25:XBTUSD"]
+          args: ["instrument:XBTUSD"]
         })
       );
     };
@@ -34,9 +33,9 @@ export default {
       if (response.data[0].openInterest) {
         self.openInterest.push(response.data[0].openInterest);
       }
-      if (response.table == "orderBookL2_25") {
+      /*if (response.table == "orderBookL2_25") {
         updateOrderBook(response.data, response.action);
-      }
+      }*/
     };
 
     function nextOrderBook(data, action) {
