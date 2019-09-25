@@ -5,36 +5,15 @@ import 'chartjs-plugin-streaming';
 export default {
   extends: Line,
   computed: {
-    newMessage: function(){
-      const last = this.message.slice(-1);
-      return last
-    },
     lastOI: function(){
       return this.openinterest.slice(-1)
     }
   },
-  data : function (){
-      return {
-        message: [],
-        openinterest: []
-      }
-    },
+  props:['openinterest'],
+
   mounted () {
-    var ws = new WebSocket("wss://www.bitmex.com/realtime")
-    var self = this
-    ws.onopen = function(){
-      ws.send(JSON.stringify({
-        op: "subscribe",
-        args: ["instrument:XBTUSD"]
-      }))
-    }
-    ws.onmessage = function(msg){
-      var response = JSON.parse(msg.data)
-      self.message.push(response)
-      if (response.data[0].openInterest) {
-        self.openinterest.push(response.data[0].openInterest)
-      }
-    }
+
+    
     this.renderChart({
       datasets: [{
         data: [],
@@ -56,7 +35,7 @@ export default {
               })
             },
             delay: 0.5,
-            duration: 5000
+            duration: 20000
           }
         }]
       }

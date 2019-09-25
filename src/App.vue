@@ -5,12 +5,12 @@
     <div class="md-layout">
       <div class="md-card">
         <div class="md-card-content">
-          <MyChart :width="640" :height="480"></MyChart>
+            <MyChart :width="640" :height="480"></MyChart>
         </div>
       </div>
       <div class="md-card">
         <div class="md-card-content">
-          <BitmexOI></BitmexOI>
+          <Bitmex></Bitmex>
         </div>
       </div>
     </div>
@@ -21,13 +21,15 @@
 import HelloWorld from './components/HelloWorld.vue'
 import MyChart from './components/MyChart.vue'
 import BitmexOI from './components/BitmexOI.vue'
+import Bitmex from './components/Bitmex.vue'
 
 export default {
   name: 'app',
   components: {
     HelloWorld,
     MyChart,
-    BitmexOI
+    BitmexOI,
+    Bitmex
   }
 }
 </script>
